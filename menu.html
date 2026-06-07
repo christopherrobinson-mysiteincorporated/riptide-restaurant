@@ -1,0 +1,140 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu - Riptide</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    /* --- HEADER RESTORATION --- */
+    .topnav {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        /* Removed background-color so your image shows */
+    }
+
+    /* This keeps the "Explore" and "Contact" links spaced out */
+    .divider {
+        width: 1px;
+        height: 20px;
+        background-color: rgba(255, 255, 255, 0.3); /* Subtle white line */
+        margin: 0 15px;
+    }
+
+    .contact-link {
+        text-decoration: none;
+        color: inherit; /* Takes color from your styles.css */
+        margin: 0;
+    }
+
+    /* Dropdown Styling */
+    .dropdown { position: relative; display: inline-block; }
+    .dropbtn {
+        background: none;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        color: inherit;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+        z-index: 10;
+    }
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    .dropdown:hover .dropdown-content { display: block; }
+
+    /* --- MENU IMAGE FIX --- */
+    .menu-display {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        gap: 30px;
+        padding: 20px;
+    }
+
+    .menu-page {
+        max-width: 90%;     /* Fits screen width */
+        width: 1000px;      /* Bigger for better readability */
+        height: auto;       
+        border-radius: 4px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    main { text-align: center; }
+</style>
+
+</head>
+<body>
+
+    <header>
+        <nav class="topnav">
+            <div class="dropdown">
+                <button class="dropbtn">Explore ▾</button>
+                <div class="dropdown-content">
+                    <a href="index.html">Home</a>
+                    <a href="livemusic.html">Event calendar</a>
+                    <a href="carrer2.html">Careers</a>
+                    <a href="gallery.html">Gallery</a>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <p id="contactheader" class="contact-link">contact info:</p>
+            
+            <div class="divider"></div>
+            <a id="maps" class="contact-link" href="https://www.google.com/maps?q=38+Ocean+Ave,+West+Haven,+CT+06516" target="_blank">38 Ocean Ave, West Haven, CT 06516</a>
+            <div class="divider"></div>
+
+
+            <a id="phone" class="contact-link" href="tel:+12033905918">Call us 203-390-5918</a>
+
+            <div class="divider"></div>
+
+            <a id="fb" class="contact-link" href="https://www.facebook.com/riptidewesthaven/">Facebook</a>
+            <div class="divider"></div>
+            <a id ="ig" class="contact-link" href="https://www.instagram.com/riptidewesthaven/" target="_blank">Instagram</a>
+
+        </nav>
+    </header>
+
+    <main>
+        <h1>Our Menu</h1>
+        
+        <div class="menu-display">
+            <img src="menu1.jpg" alt="Menu Front Page" class="menu-page">
+            <img src="menu2.jpg" alt="Menu Back Page" class="menu-page">
+        </div>
+        <h1>~Todays specials~</h1>
+        <iframe id="specials"width="100%" 
+  height="1000px" 
+ 
+  title="Todays specials">
+     </main>
+    <div class="iframe-container" style="position: relative; width: 100%; max-width: 800px; padding-bottom: 129.41%; height: 0; min-height: 500px; overflow: hidden; margin: auto; background-color: #f9f9f9;">
+  <iframe 
+    src="https://docs.google.com/document/d/e/2PACX-1vRmZV5Ih9_yKXXp85jAwWDU72QtO1yRhnYe1sG4Cl93SlsH5nkQQTqdz1KpvgQaZG4YF4SNtc9Djt-r/pub?embedded=true&rm=minimal" 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
+    frameborder="0">
+  </iframe>
+</div>
+
+</div>
+
+</iframe>
+
+
+</body>
+</html>
+
+

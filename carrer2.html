@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riptide Job Application</title>
+
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f0f2f5; padding: 20px; color: #333; line-height: 1.6; }
+        .container { max-width: 750px; margin: auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        h2 { text-align: center; color: #1a1a1a; border-bottom: 2px solid #27ae60; padding-bottom: 10px; margin-bottom: 30px; }
+        h3 { color: #2c3e50; font-size: 1.1rem; margin-top: 25px; border-left: 4px solid #27ae60; padding-left: 10px; margin-bottom: 15px; }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.95rem; }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select, textarea {
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 1rem;
+        }
+        input:focus, textarea:focus { border-color: #27ae60; outline: none; box-shadow: 0 0 5px rgba(39, 174, 96, 0.2); }
+        .row { display: flex; gap: 20px; }
+        .row .form-group { flex: 1; }
+        .section-box { background: #f9f9f9; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #eee; }
+        .section-label { font-size: 0.85rem; color: #7f8c8d; text-transform: uppercase; margin-bottom: 10px; display: block; font-weight: bold; }
+        .checkbox-group { display: flex; flex-wrap: wrap; gap: 15px; padding-top: 5px; }
+        button { width: 100%; padding: 15px; background-color: #27ae60; color: white; border: none; border-radius: 6px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.3s; margin-top: 20px; }
+        button:hover { background-color: #219150; }
+        @media (max-width: 600px) { .row { flex-direction: column; gap: 0; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Riptide Employment Application</h2>
+    
+    <form action="https://api.web3forms.com/submit" method="POST">
+        
+        <input type="hidden" name="access_key" value="f177ebd0-eac4-46fa-9587-6bd2c56d626e">
+        <input type="hidden" name="subject" value="New Riptide Job Application">
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+        <div class="form-group">
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" name="full_name" required>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+        </div>
+
+        <h3>Job Details</h3>
+        <div class="form-group">
+            <label for="position">Position Applied For</label>
+            <select id="position" name="position" required>
+                <option value="">-- Select Role --</option>
+                <option value="server">Server</option>
+                <option value="host">Host / Hostess</option>
+                <option value="line-cook">Line Cook</option>
+                <option value="dishwasher">Dishwasher</option>
+                <option value="bartender">Bartender</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Availability</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="availability" value="morning"> Mornings</label>
+                <label><input type="checkbox" name="availability" value="afternoon"> Afternoons</label>
+                <label><input type="checkbox" name="availability" value="evening"> Evenings</label>
+                <label><input type="checkbox" name="availability" value="weekend"> Weekends</label>
+            </div>
+        </div>
+
+        <h3>Previous Employment</h3>
+        
+        <div class="section-box">
+            <span class="section-label">Most Recent Position (1)</span>
+            <div class="form-group">
+                <label for="job1-company">Company Name</label>
+                <input type="text" id="job1-company" name="job1_company">
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="job1-role">Job Title</label>
+                    <input type="text" id="job1-role" name="job1_role">
+                </div>
+                <div class="form-group">
+                    <label for="job1-duration">Dates Employed</label>
+                    <input type="text" id="job1-duration" name="job1_duration">
+                </div>
+            </div>
+        </div>
+
+        <div class="section-box">
+            <span class="section-label">Previous Position (2)</span>
+            <div class="form-group">
+                <label for="job2-company">Company Name</label>
+                <input type="text" id="job2-company" name="job2_company">
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="job2-role">Job Title</label>
+                    <input type="text" id="job2-role" name="job2_role">
+                </div>
+                <div class="form-group">
+                    <label for="job2-duration">Dates Employed</label>
+                    <input type="text" id="job2-duration" name="job2_duration">
+                </div>
+            </div>
+        </div>
+
+        <h3>Professional References</h3>
+        
+        <div class="row">
+            <div class="section-box" style="flex:1;">
+                <span class="section-label">Reference 1</span>
+                <div class="form-group">
+                    <label for="ref1-name">Full Name</label>
+                    <input type="text" id="ref1-name" name="ref1_name">
+                </div>
+                <div class="form-group">
+                    <label for="ref1-phone">Phone</label>
+                    <input type="tel" id="ref1-phone" name="ref1_phone">
+                </div>
+            </div>
+
+            <div class="section-box" style="flex:1;">
+                <span class="section-label">Reference 2</span>
+                <div class="form-group">
+                    <label for="ref2-name">Full Name</label>
+                    <input type="text" id="ref2-name" name="ref2_name">
+                </div>
+                <div class="form-group">
+                    <label for="ref2-phone">Phone</label>
+                    <input type="tel" id="ref2-phone" name="ref2_phone">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="start-date">Earliest Start Date</label>
+            <input type="date" id="start-date" name="start_date" required>
+        </div>
+
+        <button type="submit">Submit Application</button>
+    </form>
+</div>
+
+</body>
+</html>
