@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -24,521 +24,98 @@
       color: var(--text-white);
       min-height: 100vh;
       padding: 2rem 4%;
-      overflow-y: auto;
     }
 
-    .sub-header-bar {
-      text-align: center;
-      color: var(--text-gray);
-      font-size: 0.9rem;
-      margin-bottom: 2rem;
-      letter-spacing: 0.02em;
-    }
-
-    /* --- FORM CARD STRUCTURE --- */
-    .portal-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    }
-
-    .card-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--accent-gold);
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-    }
-    .card-title::before {
-      content: '|';
-      color: var(--accent-gold);
-      margin-right: 8px;
-      font-weight: 900;
-    }
-
-    .card-subtitle {
-      color: var(--text-gray);
-      font-size: 0.85rem;
-      margin-bottom: 1.5rem;
-    }
-
+    .sub-header-bar { text-align: center; color: var(--text-gray); font-size: 0.9rem; margin-bottom: 2rem; }
+    .portal-card { background: var(--card-bg); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); }
+    .card-title { font-size: 1.4rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 0.5rem; display: flex; align-items: center; }
+    .card-title::before { content: '|'; color: var(--accent-gold); margin-right: 8px; font-weight: 900; }
+    .card-subtitle { color: var(--text-gray); font-size: 0.85rem; margin-bottom: 1.5rem; }
     .form-group { margin-bottom: 1.2rem; }
-
-    label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--text-white);
-    }
-
-    input[type="text"], textarea, select {
-      width: 100%;
-      background: var(--input-bg);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-      padding: 0.8rem 1rem;
-      color: var(--text-white);
-      font-family: inherit;
-      font-size: 0.95rem;
-      outline: none;
-    }
-    input[type="text"]:focus, textarea:focus, select:focus {
-      border-color: var(--accent-gold);
-    }
-
-    input[type="file"] {
-      display: block;
-      width: 100%;
-      background: var(--input-bg);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-      padding: 0.8rem;
-      color: var(--text-gray);
-    }
-
-    textarea { resize: vertical; min-height: 100px; }
-
-    .gold-btn {
-      background: var(--accent-gold);
-      color: #000000;
-      border: none;
-      border-radius: 6px;
-      padding: 0.75rem 1.5rem;
-      font-size: 0.85rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 0.5rem;
-    }
-
-    /* --- EXPANDED BUILDER AREA TUNING --- */
-    .builder-layout {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 24px;
-      margin-top: 1.5rem;
-    }
-
-    .builder-toolbox {
-      background: rgba(0, 0, 0, 0.2);
-      border: 1px dashed rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      align-self: start;
-    }
-
-    .tool-btn {
-      width: 100%;
-      background: transparent;
-      border: 1px solid var(--accent-gold);
-      color: var(--text-white);
-      padding: 12px;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .tool-btn:hover { background: rgba(242, 184, 75, 0.1); }
-
-    #property-editor {
-      display: none;
-      background: var(--input-bg);
-      border: 1px solid rgba(242, 184, 75, 0.3);
-      padding: 14px;
-      border-radius: 6px;
-    }
-    .prop-group { margin-bottom: 12px; }
-    .prop-group label { font-size: 11px; color: var(--text-gray); margin-bottom: 4px; }
-    .prop-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .prop-group input[type="color"] { width: 100%; height: 32px; background: none; border: none; cursor: pointer; }
-
-    /* EXPANDED DESIGN BOX CANVAS AREA */
-    #canvas-container {
-      position: relative;
-      background: var(--input-bg);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      height: 850px; /* Signficantly enhanced workspace canvas landscape */
-      overflow: hidden;
-      background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 24px 24px;
-    }
-
-    /* Draggable Elements Layer Setup */
-    .draggable-item {
-      position: absolute;
-      min-width: 60px;
-      min-height: 30px;
-      padding: 6px;
-      cursor: move;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .draggable-item.active {
-      outline: 2px dashed var(--accent-gold);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .inner-node {
-      width: 100%; height: 100%;
-      pointer-events: none;
-      word-wrap: break-word;
-      overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-    }
+    input[type="text"], textarea, select { width: 100%; background: var(--input-bg); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; padding: 0.8rem 1rem; color: var(--text-white); }
+    .gold-btn { background: var(--accent-gold); color: #000000; border: none; border-radius: 6px; padding: 0.75rem 1.5rem; font-weight: 700; cursor: pointer; }
+    
+    .builder-layout { display: grid; grid-template-columns: 300px 1fr; gap: 24px; margin-top: 1.5rem; }
+    .builder-toolbox { display: flex; flex-direction: column; gap: 14px; }
+    .tool-btn { width: 100%; background: transparent; border: 1px solid var(--accent-gold); color: var(--text-white); padding: 12px; border-radius: 4px; font-size: 0.75rem; text-transform: uppercase; cursor: pointer; }
+    
+    #canvas-container { position: relative; background: var(--input-bg); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; height: 850px; overflow: hidden; background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 24px 24px; }
+    .draggable-item { position: absolute; min-width: 60px; min-height: 30px; cursor: move; display: flex; align-items: center; justify-content: center; }
+    .draggable-item.active { outline: 2px dashed var(--accent-gold); }
+    .inner-node { width: 100%; height: 100%; pointer-events: none; display: flex; align-items: center; justify-content: center; }
     .inner-node img { width: 100%; height: 100%; object-fit: cover; }
-
-    .item-delete-btn {
-      position: absolute; top: -10px; right: -10px; background: #ef4444; color: white;
-      border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 10px;
-      cursor: pointer; display: none; z-index: 10;
-    }
+    .item-delete-btn { position: absolute; top: -10px; right: -10px; background: #ef4444; color: white; border-radius: 50%; width: 22px; height: 22px; cursor: pointer; display: none; }
     .draggable-item.active .item-delete-btn { display: block; }
-
-    .resizer-handle {
-      width: 12px; height: 12px; background: var(--accent-gold); position: absolute;
-      right: -4px; bottom: -4px; cursor: nwse-resize; border-radius: 50%; display: none; z-index: 10;
-    }
-    .draggable-item.active .resizer-handle { display: block; }
   </style>
 </head>
 <body>
 
-  <div class="sub-header-bar">
-    Manage menu scans, real-time daily specials, and custom gallery placements.
-  </div>
-
-  <div class="portal-card">
-    <div class="card-title">Update Main Menu Sheets</div>
-    <div class="card-subtitle">Upload a snapshot of the front and back pages. This will automatically overwrite and scale the live images on the public menu page.</div>
-    <form id="menu-sheets-form" onsubmit="event.preventDefault(); alert('Menu images published live!');">
-      <div class="form-group">
-        <label>Menu Front Page (Image File)</label>
-        <input type="file" accept="image/*">
-      </div>
-      <div class="form-group">
-        <label>Menu Back Page (Image File)</label>
-        <input type="file" accept="image/*">
-      </div>
-      <button type="submit" class="gold-btn">Push Menu Images Live</button>
-    </form>
-  </div>
-
-  <div class="portal-card">
-    <div class="card-title">Add Today's Menu Special</div>
-    <form id="menu-specials-form" onsubmit="event.preventDefault(); alert('Special added successfully!');">
-      <div class="form-group">
-        <label>Item Name</label>
-        <input type="text" placeholder="e.g., Shoreline Lobster Roll">
-      </div>
-      <div class="form-group">
-        <label>Price</label>
-        <input type="text" placeholder="e.g., $28.95">
-      </div>
-      <div class="form-group">
-        <label>Item Description</label>
-        <textarea placeholder="Describe the daily special details here..."></textarea>
-      </div>
-      <button type="submit" class="gold-btn">Publish to Live Specials List</button>
-    </form>
-  </div>
+  <div class="sub-header-bar">Manage menu scans, real-time daily specials, and custom gallery placements.</div>
 
   <div class="portal-card">
     <div class="card-title">Custom Gallery Layout Placements</div>
-    <div class="card-subtitle">Generate layout nodes, select them to modify content or typography properties, then arrange freely inside the canvas layer.</div>
-
     <div class="builder-layout">
       <div class="builder-toolbox">
-        <button class="tool-btn" onclick="addNode('text', 'Custom Label Text')">+ Text Block</button>
-        
-        <div>
-          <button class="tool-btn" onclick="document.getElementById('gallery-file-input').click()">📁 Upload From Laptop</button>
-          <input type="file" id="gallery-file-input" accept="image/*" style="display: none;" onchange="handleCompressedUpload(this)">
-        </div>
-
-        <button class="tool-btn" onclick="addNode('block', '')">+ Structural Box Container</button>
-        
-        <div id="property-editor">
-          <div style="font-size: 11px; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 8px; font-weight:700;">Element Properties</div>
-          
-          <div class="prop-group" id="prop-content-wrapper">
-            <label id="input-content-label">Text Content</label>
-            <input type="text" id="prop-content" oninput="updateActiveElement('content', this.value)">
-          </div>
-
-          <div class="prop-row">
-            <div class="prop-group">
-              <label>Text Tint</label>
-              <input type="color" id="prop-color" oninput="updateActiveElement('color', this.value)">
-            </div>
-            <div class="prop-group">
-              <label>Background Fill</label>
-              <input type="color" id="prop-bg" oninput="updateActiveElement('bg', this.value)">
-            </div>
-          </div>
-
-          <div class="prop-row">
-            <div class="prop-group">
-              <label>Font Size</label>
-              <input type="text" id="prop-size" placeholder="16px" oninput="updateActiveElement('size', this.value)">
-            </div>
-            <div class="prop-group">
-              <label>Font Family</label>
-              <select id="prop-font" onchange="updateActiveElement('font', this.value)">
-                <option value="'DM Sans', sans-serif">DM Sans</option>
-                <option value="'Playfair Display', serif">Playfair Display</option>
-                <option value="'Courier Prime', monospace">Courier Vintage</option>
-                <option value="'Inter', sans-serif">Inter Clean</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <button class="tool-btn" onclick="saveGalleryLayout()" style="border-color: #4ade80; color: #4ade80; margin-top: 20px;">🚀 Push Gallery Layout Live</button>
+        <button class="tool-btn" onclick="addNode('text', 'New Text')">+ Text Block</button>
+        <button class="tool-btn" onclick="document.getElementById('file-input').click()">📁 Upload Image</button>
+        <input type="file" id="file-input" style="display: none;" onchange="handleImage(this)">
+        <button class="tool-btn" onclick="saveGalleryLayout()" style="border-color: #4ade80; color: #4ade80;">🚀 Push Gallery Live</button>
         <div id="layout-status" style="font-size: 11px; text-align: center; color: var(--text-gray);"></div>
       </div>
-
       <div id="canvas-container"></div>
     </div>
   </div>
 
   <script>
-    let focusElement = null;
-
-    // Reads device files and compresses them inside HTML5 canvas down into a performant scale factor
-    function handleCompressedUpload(input) {
-      if (input.files && input.files[0]) {
-        const file = input.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-          const img = new Image();
-          img.src = e.target.result;
-
-          img.onload = function() {
-            const canvas = document.createElement('canvas');
-            let width = img.width;
-            let height = img.height;
-
-            // Enforce maximum sizing rules on local assets to prevent massive base64 network payloads
-            const MAX_WIDTH = 800;
-            if (width > MAX_WIDTH) {
-              height = Math.round((height * MAX_WIDTH) / width);
-              width = MAX_WIDTH;
-            }
-
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, width, height);
-
-            // Export compressed JPEG format at 75% display threshold quality
-            const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.75);
-            addNode('image', compressedDataUrl);
-            input.value = ''; 
-          };
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-
-    function addNode(type, defaultValue) {
-      const container = document.getElementById('canvas-container');
-      const item = document.createElement('div');
-      item.className = 'draggable-item';
-      item.style.left = '50px';
-      item.style.top = '50px';
-      item.dataset.nodeType = type;
-
-      let inner = document.createElement('div');
-      inner.className = 'inner-node';
-
-      if (type === 'image') {
-        const img = document.createElement('img');
-        img.src = defaultValue;
-        inner.appendChild(img);
-        item.style.width = '240px';
-        item.style.height = '180px';
-      } else if (type === 'text') {
-        inner.innerText = defaultValue;
-        inner.style.color = '#ffffff';
-        inner.style.fontSize = '16px';
-        item.style.width = '200px';
-        item.style.height = '50px';
-      } else {
-        inner.style.border = '1px dashed rgba(255,255,255,0.3)';
-        inner.style.backgroundColor = 'rgba(255,255,255,0.05)';
-        item.style.width = '220px';
-        item.style.height = '140px';
-      }
-
-      const delBtn = document.createElement('button');
-      delBtn.className = 'item-delete-btn';
-      delBtn.innerHTML = '✕';
-      delBtn.onclick = (e) => { e.stopPropagation(); item.remove(); hideEditor(); };
-
-      const handle = document.createElement('div');
-      handle.className = 'resizer-handle';
-
-      item.append(delBtn, inner, handle);
-      container.appendChild(item);
-
-      attachDrag(item);
-      attachResize(item, handle);
-      setFocus(item);
-    }
-
-    function setFocus(el) {
-      if (focusElement) focusElement.classList.remove('active');
-      focusElement = el;
-      focusElement.classList.add('active');
-
-      const type = el.dataset.nodeType;
-      const inner = el.querySelector('.inner-node');
-      document.getElementById('property-editor').style.display = 'block';
-
-      if (type === 'image') {
-        document.getElementById('prop-content-wrapper').style.display = 'none';
-      } else {
-        document.getElementById('prop-content-wrapper').style.display = 'block';
-        document.getElementById('input-content-label').innerText = "Text Wording Content";
-        document.getElementById('prop-content').value = type === 'text' ? inner.innerText : '';
-      }
-
-      document.getElementById('prop-color').value = rgbToHex(window.getComputedStyle(inner).color);
-      document.getElementById('prop-bg').value = rgbToHex(window.getComputedStyle(inner).backgroundColor);
-      document.getElementById('prop-size').value = window.getComputedStyle(inner).fontSize;
-      document.getElementById('prop-font').value = inner.style.fontFamily || "'DM Sans', sans-serif";
-    }
-
-    function updateActiveElement(property, value) {
-      if (!focusElement) return;
-      const inner = focusElement.querySelector('.inner-node');
-      const type = focusElement.dataset.nodeType;
-
-      if (property === 'content' && type !== 'image') inner.innerText = value;
-      if (property === 'color') inner.style.color = value;
-      if (property === 'bg') { inner.style.backgroundColor = value; inner.style.border = 'none'; }
-      if (property === 'size') inner.style.fontSize = value;
-      if (property === 'font') inner.style.fontFamily = value;
-    }
-
-    function hideEditor() {
-      document.getElementById('property-editor').style.display = 'none';
-      focusElement = null;
-    }
-
-    function attachDrag(el) {
-      el.onmousedown = function(e) {
-        if (e.target.classList.contains('resizer-handle') || e.target.classList.contains('item-delete-btn')) return;
-        setFocus(el);
-        
+    function addNode(type, val) {
+      const el = document.createElement('div');
+      el.className = 'draggable-item';
+      el.dataset.nodeType = type;
+      el.innerHTML = `<button class="item-delete-btn" onclick="this.parentElement.remove()">✕</button><div class="inner-node">${type === 'text' ? val : '<img src="'+val+'">'}</div>`;
+      document.getElementById('canvas-container').appendChild(el);
+      el.onmousedown = (e) => {
+        document.querySelectorAll('.draggable-item').forEach(i => i.classList.remove('active'));
+        el.classList.add('active');
+        // Simple drag logic
         let shiftX = e.clientX - el.getBoundingClientRect().left;
         let shiftY = e.clientY - el.getBoundingClientRect().top;
+        document.onmousemove = (e) => {
+          el.style.left = (e.clientX - shiftX) + 'px';
+          el.style.top = (e.clientY - shiftY) + 'px';
+        };
+        document.onmouseup = () => document.onmousemove = null;
+      };
+    }
 
-        function moveAt(pageX, pageY) {
-          let canvas = document.getElementById('canvas-container').getBoundingClientRect();
-          el.style.left = (pageX - canvas.left - shiftX) + 'px';
-          el.style.top = (pageY - canvas.top - shiftY) + 'px';
-        }
+    function handleImage(input) {
+      const reader = new FileReader();
+      reader.onload = (e) => addNode('image', e.target.result);
+      reader.readAsDataURL(input.files[0]);
+    }
 
-        function onMouseMove(e) { moveAt(e.clientX, e.clientY); }
-        document.addEventListener('mousemove', onMouseMove);
+    async function saveGalleryLayout() {
+      const status = document.getElementById('layout-status');
+      status.innerText = "Saving...";
+      
+      const payload = Array.from(document.querySelectorAll('.draggable-item')).map(el => ({
+        type: el.dataset.nodeType,
+        left: el.style.left,
+        top: el.style.top,
+        content: el.dataset.nodeType === 'image' ? el.querySelector('img').src : el.innerText.replace('✕', '')
+      }));
+
+      try {
+        const response = await fetch("/.netlify/functions/save-data", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ gallery: payload })
+        });
         
-        document.onmouseup = function() {
-          document.removeEventListener('mousemove', onMouseMove);
-          document.onmouseup = null;
-        };
-      };
-    }
-
-    function attachResize(item, handle) {
-      handle.onmousedown = function(e) {
-        e.stopPropagation();
-        function startResize(e) {
-          let itemRect = item.getBoundingClientRect();
-          item.style.width = (e.clientX - itemRect.left) + 'px';
-          item.style.height = (e.clientY - itemRect.top) + 'px';
-        }
-        document.addEventListener('mousemove', startResize);
-        document.onmouseup = function() {
-          document.removeEventListener('mousemove', startResize);
-          document.onmouseup = null;
-        };
-      };
-    }
-
-    document.getElementById('canvas-container').addEventListener('mousedown', function(e) {
-      if (e.target === this) {
-        if (focusElement) focusElement.classList.remove('active');
-        hideEditor();
+        status.innerText = response.ok ? "Published Successfully!" : "Sync Error!";
+      } catch (e) {
+        status.innerText = "Connection Failed.";
       }
-    });
-
-    function rgbToHex(rgb) {
-      if (!rgb || !rgb.startsWith('rgb')) return '#ffffff';
-      const match = rgb.match(/\d+/g);
-      return "#" + match.slice(0,3).map(x => {
-        const hex = parseInt(x).toString(16);
-        return hex.length === 1 ? "0" + hex : hex;
-      }).join('');
     }
-
-     async function saveGalleryLayout() {
-  const status = document.getElementById('layout-status');
-  status.innerText = "Transmitting to cloud...";
-
-  const items = document.querySelectorAll('.draggable-item');
-  const payload = [];
-
-  items.forEach(el => {
-    const inner = el.querySelector('.inner-node');
-    payload.push({
-      type: el.dataset.nodeType,
-      left: el.style.left,
-      top: el.style.top,
-      width: el.style.width || `${el.clientWidth}px`,
-      height: el.style.height || `${el.clientHeight}px`,
-      content: el.dataset.nodeType === 'image' ? inner.querySelector('img').src : inner.innerText,
-      style: {
-        color: window.getComputedStyle(inner).color,
-        backgroundColor: window.getComputedStyle(inner).backgroundColor,
-        fontSize: window.getComputedStyle(inner).fontSize,
-        fontFamily: inner.style.fontFamily || window.getComputedStyle(inner).fontFamily
-      }
-    });
-  });
-  
-  // This sends the data to your live Netlify function
-  try {
-    const response = await fetch("/.netlify/functions/save-data", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ gallery: payload })
-});
-
-
-    if (response.ok) {
-      status.innerText = "Gallery Page Design Synchronized Live!";
-    } else {
-      status.innerText = "Error: Could not sync to cloud.";
-    }
-  } catch (error) {
-    status.innerText = "Error: Connection failed.";
-    console.error("Save error:", error);
-  }
-}
-
-    
   </script>
 </body>
 </html>
