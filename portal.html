@@ -8,140 +8,122 @@
         body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #0b1126; color: #fff; padding: 30px; margin: 0; }
         .admin-container { max-width: 1100px; margin: auto; }
         h1 { text-align: center; color: #c8a96e; border-bottom: 2px solid #c8a96e; padding-bottom: 10px; }
-        
-        /* Dashboard Section Styles */
         .dashboard-section { background: #121b3a; padding: 25px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #23315d; }
-        h2 { color: #c8a96e; margin-top: 0; border-left: 4px solid #c8a96e; padding-left: 10px; }
-        
-        /* Form layouts */
+        h2 { color: #c8a96e; border-left: 4px solid #c8a96e; padding-left: 10px; }
         .form-group { margin-bottom: 15px; display: flex; flex-direction: column; }
-        label { margin-bottom: 5px; font-weight: bold; font-size: 0.9rem; }
-        input[type="text"], input[type="file"], textarea { padding: 12px; border: 1px solid #23315d; background: #0b1126; color: #fff; border-radius: 6px; font-size: 1rem; }
-        input:focus, textarea:focus { border-color: #c8a96e; outline: none; }
-        button { background: #c8a96e; color: #0b1126; border: none; padding: 12px 20px; font-size: 1rem; font-weight: bold; cursor: pointer; border-radius: 6px; transition: 0.2s; margin-top: 10px; }
-        button:hover { background: #e0c28d; }
+        input, textarea, select { padding: 10px; margin-top: 5px; border-radius: 6px; background: #0b1126; color: #fff; border: 1px solid #23315d; }
+        button { background: #c8a96e; color: #0b1126; border: none; padding: 12px; font-weight: bold; cursor: pointer; border-radius: 6px; margin-right: 5px; }
         
-        /* Mini Canvas Playground Styling */
-        #canvas-playground { width: 100%; height: 400px; background: #0b1126; border: 2px dashed #c8a96e; position: relative; margin-top: 15px; border-radius: 6px; overflow: hidden; }
-        .status-msg { font-weight: bold; color: #27ae60; margin-top: 10px; }
+        /* SCROLLABLE CANVAS CONTAINER */
+        #canvas-playground { 
+            width: 100%; height: 600px; background: #fff; 
+            border: 2px dashed #c8a96e; position: relative; 
+            margin-top: 15px; overflow-y: auto; overflow-x: hidden;
+        }
+        #prop-panel { background: #23315d; padding: 15px; border-radius: 6px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
 <div class="admin-container">
     <h1>⚓ Riptide Client Control Portal</h1>
-    <p style="text-align: center; opacity: 0.7;">Manage menu scans, real-time daily specials, and custom gallery placements.</p>
 
-    <!-- 📸 SECTION 1: MENU IMAGE UPLOADS -->
     <div class="dashboard-section">
         <h2>Update Main Menu Sheets</h2>
-        <p style="font-size: 0.9rem; opacity: 0.8;">Upload a snapshot of the front and back pages. This will automatically overwrite and scale the live images on the public menu page.</p>
-        
         <form id="menu-upload-form">
-            <div class="form-group">
-                <label for="menuFront">Menu Front Page (Image File)</label>
-                <input type="file" id="menuFront" accept="image/*">
-            </div>
-            <div class="form-group">
-                <label for="menuBack">Menu Back Page (Image File)</label>
-                <input type="file" id="menuBack" accept="image/*">
-            </div>
+            <div class="form-group"><label>Front Page</label><input type="file" id="menuFront" accept="image/*"></div>
+            <div class="form-group"><label>Back Page</label><input type="file" id="menuBack" accept="image/*"></div>
             <button type="submit">Push Menu Images Live</button>
         </form>
-        <div id="menu-status" class="status-msg"></div>
     </div>
 
-    <!-- 🍳 SECTION 2: DAILY SPECIALS EDITOR -->
     <div class="dashboard-section">
         <h2>Add Today's Menu Special</h2>
         <form id="specials-form">
-            <div class="form-group">
-                <label for="special-title">Item Name</label>
-                <input type="text" id="special-title" placeholder="e.g., Shoreline Lobster Roll" required>
-            </div>
-            <div class="form-group">
-                <label for="special-price">Price</label>
-                <input type="text" id="special-price" placeholder="e.g., $28.95" required>
-            </div>
-            <div class="form-group">
-                <label for="special-desc">Item Description</label>
-                <textarea id="special-desc" rows="3" placeholder="Describe the daily special details here..." required></textarea>
-            </div>
-            <button type="submit">Publish to Live Specials List</button>
+            <div class="form-group"><label>Item Name</label><input type="text" id="special-title" required></div>
+            <div class="form-group"><label>Price</label><input type="text" id="special-price" required></div>
+            <div class="form-group"><label>Description</label><textarea id="special-desc" rows="3"></textarea></div>
+            <button type="submit">Publish Special</button>
         </form>
-        <div id="specials-status" class="status-msg"></div>
     </div>
 
-    <!-- 🎨 SECTION 3: VISUAL CANVAS BUILDER (MINI PLAYGROUND) -->
     <div class="dashboard-section">
         <h2>Interactive Gallery Canvas Layout</h2>
-        <p style="font-size: 0.9rem; opacity: 0.8;">Design layout structures directly inside this interactive zone, then push coordinates to the database.</p>
+        <button id="add-text-btn">➕ Add Text</button>
         
-        <button id="add-text-btn">➕ Add Custom Canvas Text</button>
-        <button id="save-layout-btn" style="background-color: #27ae60; color: white;">🚀 Publish Canvas Layout to Gallery Page</button>
+        <input type="file" id="img-upload" accept="image/*" style="display:none">
+        <button onclick="document.getElementById('img-upload').click()">🖼️ Add Local Image</button>
         
-        <div id="canvas-playground">
-            <!-- Items drop visually inside here -->
+        <button id="save-layout-btn" style="background:#27ae60; color:white;">🚀 Publish to Supabase</button>
+        
+        <div id="prop-panel">
+            <input type="text" id="prop-text" placeholder="Edit Text">
+            <select id="prop-font">
+                <option value="Arial">Arial</option><option value="Georgia">Georgia</option><option value="Courier New">Courier</option>
+            </select>
+            <input type="number" id="prop-size" placeholder="Size (px)">
+            <input type="color" id="prop-color">
         </div>
-        <div id="canvas-status" class="status-msg"></div>
+        <div id="canvas-playground"></div>
     </div>
 </div>
 
 <script>
-    const BACKEND_URL = "http://localhost:5000/api";
+    let activeElement = null;
 
-    // ==========================================
-    // 📸 HANDLER: MENU IMAGE PIPELINES
-    // ==========================================
-    document.getElementById('menu-upload-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const statusDiv = document.getElementById('menu-status');
-        statusDiv.innerText = "Uploading files...";
+    // Add Text Logic
+    document.getElementById('add-text-btn').addEventListener('click', () => {
+        const div = document.createElement('div');
+        div.contentEditable = true;
+        div.innerText = "New Text";
+        div.style.position = "absolute";
+        div.style.cursor = "move";
+        div.style.left = "20px"; div.style.top = "20px";
+        div.onclick = (e) => { activeElement = e.target; };
+        document.getElementById('canvas-playground').appendChild(div);
+    });
 
-        const formData = new FormData();
-        const frontFile = document.getElementById('menuFront').files[0];
-        const backFile = document.getElementById('menuBack').files[0];
+    // Local Image Upload Logic
+    document.getElementById('img-upload').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const img = document.createElement('img');
+                img.src = event.target.result;
+                img.style.width = "150px";
+                img.style.position = "absolute";
+                img.style.cursor = "move";
+                img.onclick = (e) => { activeElement = e.target; };
+                document.getElementById('canvas-playground').appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
 
-        if (frontFile) formData.append('menuFront', frontFile);
-        if (backFile) formData.append('menuBack', backFile);
-
-        fetch(`${BACKEND_URL}/upload-menu`, {
-            method: 'POST',
-            body: formData // Raw multi-part stream transmission
-        })
-        .then(res => res.json())
-        .then(data => {
-            statusDiv.innerText = data.message || "✨ Menu updated successfully!";
-        })
-        .catch(err => {
-            console.error(err);
-            statusDiv.innerText = "❌ Failed to link up with backend upload engine.";
+    // Property Panel Sync
+    ['prop-text', 'prop-font', 'prop-size', 'prop-color'].forEach(id => {
+        document.getElementById(id).addEventListener('input', (e) => {
+            if (!activeElement || activeElement.tagName === 'IMG') return;
+            if (id === 'prop-text') activeElement.innerText = e.target.value;
+            if (id === 'prop-font') activeElement.style.fontFamily = e.target.value;
+            if (id === 'prop-size') activeElement.style.fontSize = e.target.value + 'px';
+            if (id === 'prop-color') activeElement.style.color = e.target.value;
         });
     });
 
-    // ==========================================
-    // 🍳 HANDLER: SPECIALS CREATION
-    // ==========================================
-    document.getElementById('specials-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const statusDiv = document.getElementById('specials-status');
-
-        const payload = {
-            title: document.getElementById('special-title').value,
-            price: document.getElementById('special-price').value,
-            description: document.getElementById('special-desc').value
-        };
-
-        // Standard boilerplate mock logic for your next structural endpoint route
-        statusDiv.innerText = `Preparing data to send: "${payload.title}"`;
-        
-        // Note: Once we build out the mongoose endpoints next, we will plug the fetch POST straight here!
+    // Save to Supabase
+    document.getElementById('save-layout-btn').addEventListener('click', async () => {
+        const items = Array.from(document.getElementById('canvas-playground').children).map(el => ({
+            html: el.outerHTML,
+            style: el.getAttribute('style')
+        }));
+        await fetch('/.netlify/functions/save-data', {
+            method: 'POST',
+            body: JSON.stringify({ layout: items })
+        });
+        alert("Layout Published to Supabase!");
     });
-
-    // ==========================================
-    // 🎨 HANDLER: VISUAL CANVAS DATA STRUCTURING
-    // ==========================================
-    // (We will wire your drag playground mechanics right here to stream coordinate tracking arrays!)
 </script>
 </body>
 </html>
