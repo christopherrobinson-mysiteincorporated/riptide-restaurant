@@ -1,22 +1,24 @@
  const { getStore } = require("@netlify/blobs");
 
-// Change 'module.exports = async' to this:
-exports.handler = async (req) => {
-  if (req.httpMethod !== "POST") { // Note: standard Netlify functions use httpMethod
+exports.handler = async (event) => {
+  // 1. Only allow POST requests (prevents 405 errors)
+  if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
 
   try {
-    const body = JSON.parse(req.body);
+    // 2. Initialize the store
     const store = getStore("restaurant-data");
-    await store.set("menu-content", JSON.stringify(body));
+    
+    // 3. Save the data
+    await store.set("menu-content", event.body);
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: "Successfully saved!" })
+      body: JSON.stringify({ message: "Success" })
     };
   } catch (error) {
     console.error("Function error:", error);
-    return { statusCode: 500, body: "Failed to save data" };
+    return { statusCode: 500, body: error.message };
   }
 };
