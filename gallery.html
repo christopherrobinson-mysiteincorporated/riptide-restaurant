@@ -35,4 +35,35 @@
             <div class="divider"></div>
             <a id ="ig" class="contact-link" href="https://www.instagram.com/riptidewesthaven/" target="_blank">Instagram</a>
         </nav>
+
     </header>
+    <script>
+  async function loadGallery() {
+    try {
+      const response = await fetch("/.netlify/functions/get-data");
+      const savedData = await response.json();
+
+      if (savedData && savedData.gallery) {
+        // Logic to render the items onto your page
+        savedData.gallery.forEach(item => {
+          const div = document.createElement('div');
+          // Apply the positions, colors, and content from the saved payload
+          div.style.position = 'absolute';
+          div.style.left = item.left;
+          div.style.top = item.top;
+          div.style.color = item.style.color;
+          div.innerText = item.content;
+          document.body.appendChild(div);
+        });
+      }
+    } catch (e) {
+      console.log("No layout data found yet.");
+    }
+  }
+
+  // Load the data as soon as the page opens
+  window.onload = loadGallery;
+</script>
+
+</body>
+</html>
