@@ -1,22 +1,44 @@
  exports.handler = async (event) => {
-  if (event.httpMethod !== "POST") return { statusCode: 405, body: "Method Not Allowed" };
+  // 1. Only allow POST requests
+  if (event.httpMethod !== "POST") {
+    return { 
+      statusCode: 405, 
+      body: "Method Not Allowed" 
+    };
+  }
 
   try {
+    // 2. Parse the incoming data from your frontend
     const data = JSON.parse(event.body);
-    const response = await fetch(process.env.DATABASE_URL + "/rest/v1/gallery_layouts", {
+    
+    // 3. Send the data to Supabase
+    const response = await fetch(process.env.SUPABASE_URL + "/rest/v1/layouts", {
       method: "POST",
       headers: {
-        "apikey": process.env.DATABASE_KEY,
-        "Authorization": "Bearer " + process.env.DATABASE_KEY,
+        "apikey": process.env.SUPABASE_KEY,
+        "Authorization": "Bearer " + process.env.SUPABASE_KEY,
         "Content-Type": "application/json",
         "Prefer": "return=minimal"
       },
       body: JSON.stringify(data)
     });
 
-    if (!response.ok) throw new Error("Database error");
-    return { statusCode: 200, body: "Data saved!" };
+    // 4. Check if the database accepted the data
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error("Database error: " + errorText);
+    }
+    
+    return { 
+      statusCode: 200, 
+      body: JSON.stringify({ message: "Data saved successfully!" }) 
+    };
+
   } catch (error) {
-    return { statusCode: 500, body: error.message };
+    // 5. Handle any errors that happen during the process
+    return { 
+      statusCode: 500, 
+      body: JSON.stringify({ error: error.message }) 
+    };
   }
 };
