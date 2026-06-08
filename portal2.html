@@ -521,10 +521,11 @@
   // This sends the data to your live Netlify function
   try {
     const response = await fetch("/.netlify/functions/save-data", {
-      method: "POST",
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ gallery: payload })
-    });
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ gallery: payload })
+});
+
 
     if (response.ok) {
       status.innerText = "Gallery Page Design Synchronized Live!";
